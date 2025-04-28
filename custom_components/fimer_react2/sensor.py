@@ -15,7 +15,7 @@ SENSORS = [
 ]
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
-    coordinator = hass.data[DOMAIN][config_entry.entry_id]["coordinator"]
+    coordinator = hass.data[DOMAIN][config_entry.entry_id]  # Correzione qui
     meter_id = hass.data[DOMAIN][config_entry.entry_id]["meter_id"]
     inverter_id = hass.data[DOMAIN][config_entry.entry_id]["inverter_id"]
     battery_ids = hass.data[DOMAIN][config_entry.entry_id]["battery_ids"]
