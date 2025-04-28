@@ -1,0 +1,17 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to Fimer inverter",
+        "description": "Enter the local IP address, username and password to connect to the inverter."
+      },
+      "confirm": {
+        "title": "Confirm detected devices",
+        "description": "The following devices have been detected:\n\nMeter: {meter}\nInverter: {inverter}\nBatteries: {batteries}\n\nDo you confirm?"
+      }
+    },
+    "abort": {
+      "cannot_connect": "Cannot connect to the inverter. Check IP address, username or password."
+    }
+  }
+}

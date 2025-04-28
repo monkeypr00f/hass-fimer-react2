@@ -1,0 +1,12 @@
+{
+  "domain": "fimer_react2",
+  "name": "Fimer REACT2",
+  "version": "1.0.0",
+  "documentation": "https://github.com/your-username/hass-fimer-react2",
+  "issue_tracker": "https://github.com/your-username/hass-fimer-react2/issues",
+  "dependencies": [],
+  "codeowners": ["@your-username"],
+  "requirements": [],
+  "iot_class": "local_polling",
+  "config_flow": true
+}
