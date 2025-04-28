@@ -8,12 +8,15 @@ from .const import DOMAIN, DEFAULT_SCAN_INTERVAL, CONF_HOST, CONF_USERNAME, CONF
 
 _LOGGER = logging.getLogger(__name__)
 
-class FimerCoordinator(DataUpdateCoordinator):
-    def __init__(self, hass, config):
+class FimerDataUpdateCoordinator(DataUpdateCoordinator):
+    """Coordinatore per l'integrazione Fimer REACT2"""
+
+    def __init__(self, hass, config_entry):
+        """Inizializza il coordinatore"""
         self.hass = hass
-        self.host = config[CONF_HOST]
-        self.username = config[CONF_USERNAME]
-        self.password = config[CONF_PASSWORD]
+        self.host = config_entry.data[CONF_HOST]
+        self.username = config_entry.data[CONF_USERNAME]
+        self.password = config_entry.data[CONF_PASSWORD]
         super().__init__(
             hass,
             _LOGGER,
