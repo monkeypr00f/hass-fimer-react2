@@ -5,7 +5,7 @@
   "documentation": "https://github.com/your-username/hass-fimer-react2",
   "issue_tracker": "https://github.com/your-username/hass-fimer-react2/issues",
   "dependencies": [],
-  "codeowners": ["@your-username"],
+  "codeowners": ["monkeypr00f"],
   "requirements": [],
   "iot_class": "local_polling",
   "config_flow": true
