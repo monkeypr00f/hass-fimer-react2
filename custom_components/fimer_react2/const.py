@@ -12,15 +12,15 @@ STATIC_SENSORS = {
     "battery_status": {"name": "Battery Status", "unit": "%", "icon": "mdi:battery-medium", "device_class": "battery"},
     "battery_charge_today": {"name": "Battery Charge Today", "unit": "Wh", "icon": "mdi:battery-plus", "device_class": "energy", "state_class": "total_increasing"},
     "battery_discharge_today": {"name": "Battery Discharge Today", "unit": "Wh", "icon": "mdi:battery-minus", "device_class": "energy", "state_class": "total_increasing"},
-    "rt_generation_to_grid": {"name": "RT Generation to Grid", "unit": "Wh", "icon": "mdi:solar-panel-large", "device_class": "energy", "state_class": "measurement"},
-    "rt_grid_to_house": {"name": "RT Grid to House", "unit": "Wh", "icon": "mdi:transmission-tower", "device_class": "energy", "state_class": "measurement"},
-    "rt_battery_to_house": {"name": "RT Battery to House", "unit": "Wh", "icon": "mdi:battery-medium", "device_class": "energy", "state_class": "measurement"},
+    "rt_generation_to_grid": {"name": "RT Generation to Grid", "unit": "Wh", "icon": "mdi:solar-panel-large", "state_class": "measurement"},
+    "rt_grid_to_house": {"name": "RT Grid to House", "unit": "Wh", "icon": "mdi:transmission-tower", "state_class": "measurement"},
+    "rt_battery_to_house": {"name": "RT Battery to House", "unit": "Wh", "icon": "mdi:battery-medium", "state_class": "measurement"},
     "rt_generation_to_battery": {"name": "RT Generation to Battery", "unit": "Wh", "icon": "mdi:solar-panel-large", "device_class": "energy", "state_class": "measurement"},
-    "generation_to_house": {"name": "Generation to House", "unit": "Wh", "icon": "mdi:solar-panel-large", "device_class": "energy", "state_class": "measurement"},
+    "generation_to_house": {"name": "Generation to House", "unit": "Wh", "icon": "mdi:solar-panel-large", "state_class": "measurement"},
 }
 
 # Template per sensori dinamici di ogni batteria (creati a runtime)
 BATTERY_SENSOR_TYPES = {
-    "charge": {"unit": "Wh", "icon": "mdi:battery-plus-outline", "device_class": "energy", "state_class": "measurement"},
-    "discharge": {"unit": "Wh", "icon": "mdi:battery-minus-outline", "device_class": "energy", "state_class": "measurement"},
+    "charge": {"unit": "Wh", "icon": "mdi:battery-plus-outline", "state_class": "measurement"},
+    "discharge": {"unit": "Wh", "icon": "mdi:battery-minus-outline", "state_class": "measurement"},
 }
