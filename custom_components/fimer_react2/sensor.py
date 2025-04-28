@@ -2,17 +2,92 @@ from homeassistant.components.sensor import SensorEntity
 from homeassistant.const import PERCENTAGE
 from .const import DOMAIN
 
-SENSORS = [
-    ("Home balance", "HousePgrid_Tot", "meter", "Wh", None, "measurement"),
-    ("Generation Balance", "Pin", "inverter", "Wh", None, "measurement"),
-    ("Generation Today", "Ein_runtime", "inverter", "Wh", "energy", "total_increasing"),
-    ("Grid Balance", "E8_runtime", "meter", "Wh", "energy", "total_increasing"),
-    ("Home Today", "E7_runtime", "meter", "Wh", "energy", "total_increasing"),
-    ("ToGrid Today", "E3_runtime", "meter", "Wh", "energy", "total_increasing"),
-    ("Battery status", "TSoc", "inverter", PERCENTAGE, None, "measurement"),
-    ("Battery Charge Today", "ECharge_runtime", "battery", "Wh", "energy", "total_increasing"),
-    ("Battery Discharge Today", "EDischarge_runtime", "battery", "Wh", "energy", "total_increasing"),
-]
+SENSORS = {
+    "Home Balance": {
+        "unit": "W",
+        "device_class": None,
+        "state_class": "measurement",
+        "icon": "mdi:home-lightning-bolt",
+    },
+    "Generation Balance": {
+        "unit": "W",
+        "device_class": None,
+        "state_class": "measurement",
+        "icon": "mdi:solar-power",
+    },
+    "Generation Today": {
+        "unit": "Wh",
+        "device_class": "energy",
+        "state_class": "total_increasing",
+        "icon": "mdi:solar-panel-large",
+    },
+    "Battery Status": {
+        "unit": "%",
+        "device_class": "battery",
+        "state_class": "measurement",
+        "icon": "mdi:battery",
+    },
+    "Generation to House": {
+        "unit": "W",
+        "device_class": None,
+        "state_class": "measurement",
+        "icon": "mdi:solar-panel",
+    },
+    "RT Generation to Grid": {
+        "unit": "W",
+        "device_class": None,
+        "state_class": "measurement",
+        "icon": "mdi:transmission-tower-export",
+    },
+    "RT Grid to House": {
+        "unit": "W",
+        "device_class": None,
+        "state_class": "measurement",
+        "icon": "mdi:transmission-tower-import",
+    },
+    "RT Battery to House": {
+        "unit": "W",
+        "device_class": None,
+        "state_class": "measurement",
+        "icon": "mdi:battery-arrow-down",
+    },
+    "RT Generation to Battery": {
+        "unit": "W",
+        "device_class": None,
+        "state_class": "measurement",
+        "icon": "mdi:battery-arrow-up",
+    },
+    "Grid Balance": {
+        "unit": "Wh",
+        "device_class": "energy",
+        "state_class": "total_increasing",
+        "icon": "mdi:transmission-tower",
+    },
+    "Home Today": {
+        "unit": "Wh",
+        "device_class": "energy",
+        "state_class": "total_increasing",
+        "icon": "mdi:home",
+    },
+    "ToGrid Today": {
+        "unit": "Wh",
+        "device_class": "energy",
+        "state_class": "total_increasing",
+        "icon": "mdi:home-export-outline",
+    },
+    "Battery Charge Today": {
+        "unit": "Wh",
+        "device_class": "energy",
+        "state_class": "total_increasing",
+        "icon": "mdi:battery-plus",
+    },
+    "Battery Discharge Today": {
+        "unit": "Wh",
+        "device_class": "energy",
+        "state_class": "total_increasing",
+        "icon": "mdi:battery-minus",
+    },
+}
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
     coordinator = hass.data[DOMAIN][config_entry.entry_id]  # coordinator è un oggetto, non un dizionario
