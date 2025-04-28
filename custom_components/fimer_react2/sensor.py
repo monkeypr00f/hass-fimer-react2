@@ -46,5 +46,15 @@ class FimerReact2Sensor(SensorEntity):
     def available(self):
         return self.coordinator.last_update_success
 
+    @property
+    def device_info(self):
+        return {
+            "identifiers": {(DOMAIN, self.coordinator.config_entry.entry_id)},
+            "name": "Fimer REACT2",
+            "manufacturer": "Fimer",
+            "model": "REACT2",
+            "entry_type": "service",
+        }
+    
     async def async_update(self):
         await self.coordinator.async_request_refresh()
