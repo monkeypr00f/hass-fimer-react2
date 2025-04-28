@@ -12,4 +12,4 @@ This integration allows you to connect your Fimer REACT2 inverter locally to Hom
 Use HACS ➔ Custom Repositories ➔ Add this repository as an Integration.
 
 ### Credits
-Developed with ❤️ by [Your Name]
+Developed with ❤️
