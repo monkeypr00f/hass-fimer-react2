@@ -28,6 +28,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
                     "unit": sensor_info["unit"],
                     "icon": sensor_info["icon"],
                     "device_class": sensor_info["device_class"],
+                    "state_class": sensor_info["state_class"],
                 }
                 battery_entities.append(FimerReact2Sensor(coordinator, key, description))
 
@@ -64,6 +65,10 @@ class FimerReact2Sensor(SensorEntity):
     @property
     def device_class(self):
         return self._description.get("device_class")
+
+    @property
+    def state_class(self):
+        return self._description.get("state_class")
 
     @property
     def available(self):
