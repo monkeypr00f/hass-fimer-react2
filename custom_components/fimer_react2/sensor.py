@@ -1,17 +1,17 @@
 from homeassistant.components.sensor import SensorEntity
-from homeassistant.const import ENERGY_WATT_HOUR, PERCENTAGE
+from homeassistant.const import PERCENTAGE
 from .const import DOMAIN
 
 SENSORS = [
-    ("Home balance", "HousePgrid_Tot", "meter", ENERGY_WATT_HOUR, None, "measurement"),
-    ("Generation Balance", "Pin", "inverter", ENERGY_WATT_HOUR, None, "measurement"),
-    ("Generation Today", "Ein_runtime", "inverter", ENERGY_WATT_HOUR, "energy", "total_increasing"),
-    ("Grid Balance", "E8_runtime", "meter", ENERGY_WATT_HOUR, "energy", "total_increasing"),
-    ("Home Today", "E7_runtime", "meter", ENERGY_WATT_HOUR, "energy", "total_increasing"),
-    ("ToGrid Today", "E3_runtime", "meter", ENERGY_WATT_HOUR, "energy", "total_increasing"),
+    ("Home balance", "HousePgrid_Tot", "meter", "Wh", None, "measurement"),
+    ("Generation Balance", "Pin", "inverter", "Wh", None, "measurement"),
+    ("Generation Today", "Ein_runtime", "inverter", "Wh", "energy", "total_increasing"),
+    ("Grid Balance", "E8_runtime", "meter", "Wh", "energy", "total_increasing"),
+    ("Home Today", "E7_runtime", "meter", "Wh", "energy", "total_increasing"),
+    ("ToGrid Today", "E3_runtime", "meter", "Wh", "energy", "total_increasing"),
     ("Battery status", "TSoc", "inverter", PERCENTAGE, None, "measurement"),
-    ("Battery Charge Today", "ECharge_runtime", "battery", ENERGY_WATT_HOUR, "energy", "total_increasing"),
-    ("Battery Discharge Today", "EDischarge_runtime", "battery", ENERGY_WATT_HOUR, "energy", "total_increasing"),
+    ("Battery Charge Today", "ECharge_runtime", "battery", "Wh", "energy", "total_increasing"),
+    ("Battery Discharge Today", "EDischarge_runtime", "battery", "Wh", "energy", "total_increasing"),
 ]
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
