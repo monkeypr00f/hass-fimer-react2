@@ -1,3 +1,12 @@
+import asyncio
+import logging
+import aiohttp
+from datetime import timedelta
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed  # Aggiungi questa importazione
+from .const import DOMAIN, DEFAULT_SCAN_INTERVAL, CONF_HOST, CONF_USERNAME, CONF_PASSWORD
+
+_LOGGER = logging.getLogger(__name__)
+
 class FimerDataUpdateCoordinator(DataUpdateCoordinator):
     """Coordinatore per l'integrazione Fimer REACT2"""
 
