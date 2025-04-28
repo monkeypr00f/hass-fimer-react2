@@ -3,8 +3,8 @@ SCAN_INTERVAL = 30
 
 # Sensori statici (fissi, che sappiamo sempre esserci)
 STATIC_SENSORS = {
-    "home_balance": {"name": "Home Balance", "unit": "Wh", "icon": "mdi:home", "device_class": "energy"},
-    "generation_balance": {"name": "Generation Balance", "unit": "Wh", "icon": "mdi:solar-power", "device_class": "energy"},
+    "home_balance": {"name": "Home Balance", "unit": "Wh", "icon": "mdi:home"},
+    "generation_balance": {"name": "Generation Balance", "unit": "Wh", "icon": "mdi:solar-power"},
     "generation_today": {"name": "Generation Today", "unit": "Wh", "icon": "mdi:solar-power", "device_class": "energy"},
     "grid_balance": {"name": "Grid Balance", "unit": "Wh", "icon": "mdi:transmission-tower", "device_class": "energy"},
     "home_today": {"name": "Home Today", "unit": "Wh", "icon": "mdi:home", "device_class": "energy"},
