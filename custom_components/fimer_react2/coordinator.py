@@ -1,13 +1,3 @@
-import asyncio
-import logging
-import aiohttp
-from datetime import timedelta
-
-from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
-from .const import DOMAIN, DEFAULT_SCAN_INTERVAL, CONF_HOST, CONF_USERNAME, CONF_PASSWORD
-
-_LOGGER = logging.getLogger(__name__)
-
 class FimerDataUpdateCoordinator(DataUpdateCoordinator):
     """Coordinatore per l'integrazione Fimer REACT2"""
 
@@ -17,6 +7,9 @@ class FimerDataUpdateCoordinator(DataUpdateCoordinator):
         self.host = config_entry.data[CONF_HOST]
         self.username = config_entry.data[CONF_USERNAME]
         self.password = config_entry.data[CONF_PASSWORD]
+        self.meter_id = None
+        self.inverter_id = None
+        self.battery_ids = []
         super().__init__(
             hass,
             _LOGGER,
@@ -34,6 +27,17 @@ class FimerDataUpdateCoordinator(DataUpdateCoordinator):
                     if response.status != 200:
                         raise UpdateFailed(f"HTTP Error {response.status}")
                     data = await response.json()
+
+                    # Estrai i dati per meter, inverter e batterie
+                    for dev_id, dev_info in data.items():
+                        dev_type = dev_info.get("device_type", "")
+                        if dev_type == "meter" and self.meter_id is None:
+                            self.meter_id = dev_id
+                        elif "inverter" in dev_type and self.inverter_id is None:
+                            self.inverter_id = dev_id
+                        elif dev_type == "battery":
+                            self.battery_ids.append(dev_id)
+
                     return data
         except asyncio.TimeoutError as err:
             raise UpdateFailed("Timeout fetching data") from err
