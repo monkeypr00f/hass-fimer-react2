@@ -15,12 +15,19 @@ SENSORS = [
 ]
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
-    coordinator = hass.data[DOMAIN][config_entry.entry_id]  # Correzione qui
-    # Accedi ai dati dal coordinatore. Qui assumiamo che i dati siano già salvati.
+    coordinator = hass.data[DOMAIN][config_entry.entry_id]  # coordinator è un oggetto, non un dizionario
     meter_id = coordinator.meter_id
     inverter_id = coordinator.inverter_id
     battery_ids = coordinator.battery_ids
 
+    # Raggruppiamo tutti i sensori sotto il dispositivo "Fimer REACT2"
+    device_info = {
+        "identifiers": {(DOMAIN, config_entry.entry_id)},
+        "name": "Fimer REACT2",
+        "manufacturer": "Fimer",
+        "model": "REACT2",
+        "sw_version": "1.0.0",  # Versione del firmware dell'inverter, se disponibile
+    }
 
     entities = []
 
@@ -31,17 +38,17 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
             device_id = inverter_id
         elif device_type == "battery":
             for batt_id in battery_ids:
-                entities.append(FimerSensor(coordinator, batt_id, name.replace("Battery", f"Battery {batt_id[-4:]}"), key, unit, device_class, state_class))
+                entities.append(FimerSensor(coordinator, batt_id, name.replace("Battery", f"Battery {batt_id[-4:]}"), key, unit, device_class, state_class, device_info))
             continue
         else:
             continue
 
-        entities.append(FimerSensor(coordinator, device_id, name, key, unit, device_class, state_class))
+        entities.append(FimerSensor(coordinator, device_id, name, key, unit, device_class, state_class, device_info))
 
     async_add_entities(entities)
 
 class FimerSensor(SensorEntity):
-    def __init__(self, coordinator, device_id, name, key, unit, device_class, state_class):
+    def __init__(self, coordinator, device_id, name, key, unit, device_class, state_class, device_info):
         self.coordinator = coordinator
         self.device_id = device_id
         self._attr_name = name
@@ -49,6 +56,7 @@ class FimerSensor(SensorEntity):
         self._attr_native_unit_of_measurement = unit
         self._attr_device_class = device_class
         self._attr_state_class = state_class
+        self._attr_device_info = device_info  # Qui assegniamo il dispositivo a cui appartiene il sensore
 
     @property
     def unique_id(self):
