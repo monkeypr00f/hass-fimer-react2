@@ -21,16 +21,22 @@ class FimerReact2Sensor(SensorEntity):
         return self._description["name"]
 
     @property
+    def unique_id(self):
+        return f"{self.coordinator.config_entry.entry_id}_{self._key}"
+
+    @property
     def state(self):
+        if not self.coordinator.data:
+            return None
         return self.coordinator.data.get(self._key)
 
     @property
     def unit_of_measurement(self):
-        return self._description["unit"]
+        return self._description.get("unit")
 
     @property
     def icon(self):
-        return self._description["icon"]
+        return self._description.get("icon")
 
     @property
     def device_class(self):
