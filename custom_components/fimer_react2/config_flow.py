@@ -1,4 +1,4 @@
-# [TO BE FILLED]import logging
+import logging
 import aiohttp
 import voluptuous as vol
 from homeassistant import config_entries
@@ -24,6 +24,7 @@ class FimerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         self.battery_ids = []
 
     async def async_step_user(self, user_input=None) -> FlowResult:
+        """Passo di configurazione iniziale: connessione all'inverter"""
         if user_input is not None:
             self.data.update(user_input)
             try:
@@ -63,6 +64,7 @@ class FimerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         )
 
     async def async_step_confirm(self, user_input=None) -> FlowResult:
+        """Passo di conferma: mostra i dispositivi rilevati"""
         if user_input is not None:
             # Confermato: salviamo i dati
             self.data["meter_id"] = self.meter_id
