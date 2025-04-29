@@ -27,8 +27,8 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
                     "name": f"{battery_id} {sensor_type.capitalize()}",
                     "unit": sensor_info["unit"],
                     "icon": sensor_info["icon"],
-                    "device_class": sensor_info["device_class"],
-                    "state_class": sensor_info["state_class"],
+                    "device_class": sensor_info.get("device_class"),
+                    "state_class": sensor_info.get("state_class"),
                 }
                 battery_entities.append(FimerReact2Sensor(coordinator, key, description))
 
