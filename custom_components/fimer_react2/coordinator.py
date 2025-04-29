@@ -99,11 +99,13 @@ class FimerReact2Coordinator(DataUpdateCoordinator):
 
             battery_flow = round(raw_data[inverter_id]["points"][78]["value"], 1)
             if battery_flow >= 0:
-                parsed["rt_generation_to_battery"] = battery_flow
-                parsed["rt_battery_to_house"] = 0
-            else:
+                # Positivo = Batteria sta scaricando verso casa
                 parsed["rt_generation_to_battery"] = 0
-                parsed["rt_battery_to_house"] = abs(battery_flow)
+                parsed["rt_battery_to_house"] = battery_flow
+            else:
+                # Negativo = FV sta caricando la batteria
+                parsed["rt_generation_to_battery"] = abs(battery_flow)
+                parsed["rt_battery_to_house"] = 0
 
             inverter_pin = round(raw_data[inverter_id]["points"][10]["value"], 1)
             to_battery = round(raw_data[inverter_id]["points"][78]["value"], 1)
