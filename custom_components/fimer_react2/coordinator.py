@@ -119,6 +119,11 @@ class FimerReact2Coordinator(DataUpdateCoordinator):
             else:
                 parsed["generation_to_house"] = abs(inverter_pin)
 
+            parsed["inverter_temperature"] = round(raw_data[inverter_id]["points"][23]["value"], 1)  # TempInv
+            for idx, bat_id in enumerate(battery_ids):
+                tba = raw_data[bat_id]["points"][4]["value"]  # Tba
+                parsed[f"battery_{idx+1}_temperature"] = round(tba, 1)
+
             return parsed
 
         except Exception as err:
