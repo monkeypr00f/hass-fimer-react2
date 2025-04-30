@@ -18,7 +18,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
     # Sensori dinamici batterie
     battery_entities = []
-    ffor key in coordinator.data.keys():
+    for key in coordinator.data.keys():
         if key in STATIC_SENSORS:
             continue  # già gestito come statico, evita doppione
 
