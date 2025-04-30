@@ -19,7 +19,7 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
     # Sensori dinamici batterie
     battery_entities = []
     for key in coordinator.data.keys():
-        if "_charge" in key or "_discharge" in key:
+        if any(s in key for s in ["_charge", "_discharge", "_temperature"]):
             battery_id, sensor_type = key.split("_", 1)
             sensor_info = BATTERY_SENSOR_TYPES.get(sensor_type)
             if sensor_info:
