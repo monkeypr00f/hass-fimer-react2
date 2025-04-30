@@ -18,6 +18,7 @@ STATIC_SENSORS = {
     "rt_generation_to_battery": {"name": "RT Generation to Battery", "unit": "Wh", "icon": "mdi:solar-panel-large", "device_class": "energy", "state_class": "measurement"},
     "generation_to_house": {"name": "Generation to House", "unit": "Wh", "icon": "mdi:solar-panel-large", "state_class": "measurement"},
     "inverter_temperature": {"name": "Inverter Temperature", "unit": "°C", "icon": "mdi:thermometer", "device_class": "temperature"},
+    "inverter_internal_temperature": {"name": "Inverter Internal Temperature", "unit": "°C", "icon": "mdi:thermometer", "device_class": "temperature"},
 }
 
 # Template per sensori dinamici di ogni batteria (creati a runtime)
