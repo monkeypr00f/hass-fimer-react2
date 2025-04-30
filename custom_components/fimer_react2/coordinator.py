@@ -89,6 +89,11 @@ class FimerReact2Coordinator(DataUpdateCoordinator):
             parsed["battery_charge_today"] = sum(charge_values)
             parsed["battery_discharge_today"] = sum(discharge_values)
 
+            self.battery_name_map = {
+                dev_id: f"Battery {i+1}"
+                for i, dev_id in enumerate(battery_ids)
+            }
+            
             rt_grid = round(raw_data[grid_meter_id]["points"][18]["value"], 1)
             if rt_grid >= 0:
                 parsed["rt_generation_to_grid"] = rt_grid
