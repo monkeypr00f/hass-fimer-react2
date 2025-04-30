@@ -23,8 +23,9 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
             battery_id, sensor_type = key.split("_", 1)
             sensor_info = BATTERY_SENSOR_TYPES.get(sensor_type)
             if sensor_info:
+                battery_name = coordinator.battery_name_map.get(battery_id, battery_id)
                 description = {
-                    "name": f"{battery_id} {sensor_type.capitalize()}",
+                    "name": f"{battery_name} {sensor_type.capitalize()}",
                     "unit": sensor_info["unit"],
                     "icon": sensor_info["icon"],
                     "device_class": sensor_info.get("device_class"),
